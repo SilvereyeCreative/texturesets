@@ -129,7 +129,7 @@ TMap<TObjectPtr<UClass>, TArray<FAssetData>> TextureSetsHelpers::GetDependencies
 
 FName TextureSetsHelpers::MakeTextureParameterName(FName ParameterName, int TextureIndex)
 {
-	// To reduce the runtime cost of this method, an parameter FName cache is maintained, which avoids creating an FName from a string and formatting a string
+	// To reduce the runtime cost of this method, a parameter FName cache is maintained, which avoids creating an FName from a string and formatting a string
 	// Original code:
 	// return FName(FString::Format(TEXT("TEXSET_{0}_PACKED_{1}"), {ParameterName.ToString(), FString::FromInt(TextureIndex)}));
 	static TArray<TMap<FName, FName>> ParameterNameMap;
@@ -154,11 +154,12 @@ FName TextureSetsHelpers::MakeTextureParameterName(FName ParameterName, int Text
 	TCHAR TempNameBuffer[256] = TEXT("TEXSET_");
 	TCHAR* Current = TempNameBuffer + 7;
 
-	uint32 Size = ParameterName.ToString(Current, 256);
+	TCHAR ParameterNameBuffer[230];
+	uint32 Size = ParameterName.ToStringTruncate(ParameterNameBuffer);
 	Current += Size;
 
-	const TCHAR kSuffix[] = TEXT("_PACKED_");
-	FCString::Strcpy(Current, UE_ARRAY_COUNT(TempNameBuffer) - Size, kSuffix);
+	constexpr TCHAR kSuffix[] = TEXT("_PACKED_");
+	FCString::Strncpy(Current, kSuffix, UE_ARRAY_COUNT(TempNameBuffer) - Size);
 	Current += (UE_ARRAY_COUNT(kSuffix) - 1);
 
 	if (TextureIndex >= 10)

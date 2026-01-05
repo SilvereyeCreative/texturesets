@@ -4,7 +4,6 @@
 
 #include "GraphBuilderPin.h"
 #include "GraphBuilderValue.h"
-#include "TextureSetSampleFunctionBuilder.h"
 
 /*
 * Subsamples are registered in sample groups in the graph builder.
