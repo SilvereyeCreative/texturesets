@@ -78,7 +78,7 @@ class FTextureSetParameterEditor : public ICustomMaterialParameterEditor
 		{
 			TSharedPtr<SVerticalBox> NameVerticalBox;
 			const FText ParameterName = FText::Format(INVTEXT("{0}\n({1})"),
-				!Args.NameOverride.IsEmpty() ? Args.NameOverride : FText::FromName(Args.Parameter->ParameterInfo.Name),
+				FText::FromName(Args.Parameter->ParameterInfo.Name),
 				FText::FromString(SamplerExpression->Definition.GetName()));
 
 			FDetailWidgetRow& CustomWidget = Args.Row->CustomWidget();

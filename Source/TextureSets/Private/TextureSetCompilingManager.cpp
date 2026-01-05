@@ -560,7 +560,7 @@ void FTextureSetCompilingManager::AssignDerivedData(UTextureSetDerivedData* NewD
 	ERenameFlags RenameFlags = REN_DoNotDirty | REN_DontCreateRedirectors;
 
 	// Discard the old derived data if it exists
-	UObject* ExistingDerivedData = StaticFindObject(nullptr, TextureSet, *DerivedDataName, true);
+	UObject* ExistingDerivedData = StaticFindObject(nullptr, TextureSet, *DerivedDataName, EFindObjectFlags::ExactClass);
 	if (ExistingDerivedData)
 	{
 		ExistingDerivedData->Rename(nullptr, nullptr, RenameFlags);
