@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "TextureSet.h"
-#include "UObject/Object.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "TextureSetsBlueprintFunctionLibrary.generated.h"
 
 /**
