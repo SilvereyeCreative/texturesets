@@ -49,7 +49,8 @@ void UProceduralMaterialFunction::PostEditChangeProperty(FPropertyChangedEvent& 
 int32 UProceduralMaterialFunction::Compile(FMaterialCompiler* Compiler, int32 OutputIndex)
 {
 	FDataValidationContext ValidationContext;
-	EDataValidationResult ValidationResult = IsDataValid(ValidationContext);
+	const UProceduralMaterialFunction* ConstThis = this;
+	const EDataValidationResult ValidationResult = ConstThis->IsDataValid(ValidationContext);
 
 	if(ValidationResult == EDataValidationResult::Invalid)
 	{
